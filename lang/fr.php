@@ -12,5 +12,10 @@ $LANG = array(
 'L_ARTICLE_CONTENT'		=> "Cet article est réservé à nos membres.",
 'L_PAGE_TXT_REPLACE'		=> "Remplacer le contenu par",
 'L_PAGE_CONTENT'		=> "Cette page est réservée à nos membres.",
+'L_CHAPO_TXT_ADD_BEFORE' => "Ajouter devant le châpo",
+'L_CHAPO_TXT_ADD_AFTER' => "Ajouter après le châpo",
+'L_NEVER' => "Ne rien ajouter",
+'L_ALWAYS' => "Toujours ajouter ( aux membres et non-connectés )",
+'L_ONLY' => "Ajouter seulement aux visiteurs",
 
 );

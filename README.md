@@ -9,4 +9,8 @@ Version 1:
 + Visible pour tout le monde (par défaut)
 + Restreint aux seuls membres
 
+Version 1.5:
++ Possibilité l'altérer le châpo d'un article réservé aux membres
+
+
 Plugin en cours de création à finir de tester et d'améliorer.

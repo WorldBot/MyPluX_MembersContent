@@ -22,6 +22,10 @@ class MyPluX_MembersContent extends plxPlugin {
     $this->by_default_pages = $this->getParam('by_default_pages')!='' ? $this->getParam('by_default_pages') : 'Public';
     $this->replace_article = $this->getParam('replace_article')!='' ? $this->getParam('replace_article') : base64_encode('Le contenu de cet article est réservé à nos membres.');
     $this->replace_page = $this->getParam('replace_page')!='' ? $this->getParam('replace_page') : base64_encode('Le contenu de cette page est réservé à nos membres.');
+		$this->add_to_chapo_before = ($this->getParam('add_to_chapo_before')?$this->getParam('add_to_chapo_before'):'never');
+		$this->txt_to_chapo_before = ($this->getParam('txt_to_chapo_before')?$this->getParam('txt_to_chapo_before'):base64_encode(''));
+		$this->add_to_chapo_after = ($this->getParam('add_to_chapo_after')?$this->getParam('add_to_chapo_after'):'never');
+		$this->txt_to_chapo_after = ($this->getParam('txt_to_chapo_after')?$this->getParam('txt_to_chapo_after'):base64_encode(''));
     $this->can_view = false;
 
     # Ajouts des hooks
@@ -37,9 +41,20 @@ class MyPluX_MembersContent extends plxPlugin {
   public function plxMotorParseArticle(){
     echo "<?php
 		\$art['can_view'] = isset(\$iTags['can_view']) ? plxUtils::getValue(\$values[\$iTags['can_view'][0]]['value']) : 'default';
-		if( (!defined('PLX_ADMIN') || PLX_ADMIN!==true) && ( (\$art['can_view']=='default' && '".$this->getParam('by_default_articles')."'!='Public') || \$art['can_view']=='Members') && (!isset(\$_SESSION['user']) || intval(\$_SESSION['user'])<1) )
+		if( (!defined('PLX_ADMIN') || PLX_ADMIN!==true) && ( (\$art['can_view']=='default' && '".$this->by_default_articles."'!='Public') || \$art['can_view']=='Members') && (!isset(\$_SESSION['user']) || intval(\$_SESSION['user'])<1) )
 		{
 			\$art['content']='<div class=\"art_content_replaced\">".base64_decode($this->replace_article)."</div>';
+			if('".$this->add_to_chapo_before."' != 'never')
+				\$art['chapo'] = '".base64_decode($this->txt_to_chapo_before)."'.\$art['chapo'];
+			if('".$this->add_to_chapo_after."' != 'never')
+				\$art['chapo'] .= '".base64_decode($this->txt_to_chapo_after)."';
+		}
+		elseif( (\$art['can_view']=='default' && '".$this->by_default_articles."'!='Public') || \$art['can_view']=='Members')
+		{
+			if('".$this->add_to_chapo_before."' == 'always')
+				\$art['chapo'] = '".base64_decode($this->txt_to_chapo_before)."'.\$art['chapo'];
+			if('".$this->add_to_chapo_after."' == 'always')
+				\$art['chapo'] .= '".base64_decode($this->txt_to_chapo_after)."';			
 		}
     ?>";
   }

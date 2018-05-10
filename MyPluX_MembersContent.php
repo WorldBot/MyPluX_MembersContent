@@ -1,9 +1,12 @@
 <?php
+if (!defined('PLX_ROOT')) exit;
+
 /**
  * Plugin MyPluX_MembersContent
  *
  * @author	Yannic H.
  **/
+
 class MyPluX_MembersContent extends plxPlugin {
 
   /**

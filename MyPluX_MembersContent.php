@@ -52,7 +52,7 @@ class MyPluX_MembersContent extends plxPlugin {
 			if('".$this->add_to_chapo_after."' != 'never')
 				\$art['chapo'] .= '".base64_decode($this->txt_to_chapo_after)."';
 		}
-		elseif( (\$art['can_view']=='default' && '".$this->by_default_articles."'!='Public') || \$art['can_view']=='Members')
+		elseif( (!defined('PLX_ADMIN') || PLX_ADMIN!==true) && ((\$art['can_view']=='default' && '".$this->by_default_articles."'!='Public') || \$art['can_view']=='Members'))
 		{
 			if('".$this->add_to_chapo_before."' == 'always')
 				\$art['chapo'] = '".base64_decode($this->txt_to_chapo_before)."'.\$art['chapo'];

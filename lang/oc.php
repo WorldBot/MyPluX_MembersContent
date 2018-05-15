@@ -3,8 +3,8 @@
 $LANG = array(
 
 'L_SAVE'                       => "Enregistrar",
-'L_BY_DEFAULT_ARTICLES'        => "Per defaut l\estatut dels articles es",
-'L_BY_DEFAULT_PAGES'           => " Per defaut l\estatut de las paginas es",
+'L_BY_DEFAULT_ARTICLES'        => "Per defaut l\'estatut dels articles es",
+'L_BY_DEFAULT_PAGES'           => " Per defaut l\'estatut de las paginas es",
 'L_PUBLIC'                     => "Public",
 'L_MEMBERS'                    => "Reservat als membres",
 'L_BY_DEFAULT'                 => "Per defaut del Plugin",
